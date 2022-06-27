@@ -25,7 +25,7 @@ r_VirtualAlloc(
 }
 
 //! CreateFileMapping
-auto o_create_filemapping_ansi = CreateFileMappingA;
+auto o_create_filemapping_a = CreateFileMappingA;
 HANDLE
 WINAPI
 r_CreateFileMappingA(
@@ -38,12 +38,12 @@ r_CreateFileMappingA(
 
     nh_trace( "f_m_ansi => szhi = %u, szlw= %u, name=%s\n", dwMaximumSizeHigh, dwMaximumSizeLow, lpName );
 
-    return o_create_filemapping_ansi( hFile,
-                                      lpFileMappingAttributes,
-                                      flProtect,
-                                      dwMaximumSizeHigh,
-                                      dwMaximumSizeLow,
-                                      lpName );
+    return o_create_filemapping_a( hFile,
+                                   lpFileMappingAttributes,
+                                   flProtect,
+                                   dwMaximumSizeHigh,
+                                   dwMaximumSizeLow,
+                                   lpName );
 }
 
 auto o_create_filemapping_w = CreateFileMappingW;
@@ -66,12 +66,14 @@ r_CreateFileMappingW(
                                    lpName );
 }
 
-//------------
+//------------gather.
 void np_sdk_start() {
     ::DetourTransactionBegin();
     ::DetourUpdateThread( GetCurrentThread() );
 
     HOOK_FX( "va", o_virtual_alloc, r_VirtualAlloc );
+    HOOK_FX( "CFM-A", o_create_filemapping_a, r_CreateFileMappingA );
+    HOOK_FX( "CFM-W", o_create_filemapping_w, r_CreateFileMappingW );
 
     long ret = ::DetourTransactionCommit();
     nh_trace( "hva_commit[1] res =  %d\n", ret );
@@ -82,6 +84,8 @@ void np_sdk_end() {
     ::DetourUpdateThread( GetCurrentThread() );
 
     UNHOOK_FX( "va", o_virtual_alloc, r_VirtualAlloc );
+    UNHOOK_FX( "CFM-A", o_create_filemapping_a, r_CreateFileMappingA );
+    UNHOOK_FX( "CFM-W", o_create_filemapping_w, r_CreateFileMappingW );
 
     long ret = ::DetourTransactionCommit();
     nh_trace( "hva_commit[2] res =  %d\n", ret );
