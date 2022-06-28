@@ -21,6 +21,15 @@
     <ClInclude Include="nh_tracer.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="nh_diag.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="nh_stack.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="nh_config.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -36,6 +45,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="nh_tracer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="nh_stack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="nh_config.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

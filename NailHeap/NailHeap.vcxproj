@@ -141,13 +141,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="nailheap.h" />
+    <ClInclude Include="nh_config.h" />
+    <ClInclude Include="nh_diag.h" />
+    <ClInclude Include="nh_stack.h" />
     <ClInclude Include="nh_tracer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="mh_tracer.cpp" />
     <ClCompile Include="nailheap.cpp" />
+    <ClCompile Include="nh_config.cpp" />
     <ClCompile Include="nh_sdk_api.cpp" />
+    <ClCompile Include="nh_stack.cpp" />
     <ClCompile Include="nh_tracer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -27,6 +27,8 @@ int main() {
                                            0,
                                            50 * 1024 * 1024 );
 
+    SetProcessWorkingSetSize( GetCurrentProcess(), 5 * 1024 * 1025, 5 * 1024 * 1025 );
+
     getchar();
     return 0;
 }
